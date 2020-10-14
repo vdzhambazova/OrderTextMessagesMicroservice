@@ -10,6 +10,6 @@ namespace OrderTextMessagesMicroservice.Data
 
         }
 
-        public DbSet<Order> Orders { get; set; }
+        public DbSet<Message> Messages { get; set; }
     }
 }
