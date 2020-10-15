@@ -11,7 +11,7 @@
   "profiles": {
     "IIS Express": {
       "commandName": "IISExpress",
-      "launchUrl": "orderTextMessages",
+      "launchUrl": "restaurants",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -19,7 +19,7 @@
     "OrderTextMessagesMicroservice": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "orderTextMessages",
+      "launchUrl": "restaurants",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
@@ -28,9 +28,10 @@
     "Docker": {
       "commandName": "Docker",
       "launchBrowser": true,
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/orderTextMessages",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/restaurants",
       "publishAllPorts": true,
-      "useSSL": true
+      "useSSL": false,
+      "httpPort": 8080
     }
   }
 }
