@@ -5,9 +5,9 @@ using OrderTextMessagesMicroservice.Core;
 using System;
 using System.Linq;
 
-namespace OrderTextMessagesMicroservice
+namespace OrderTextMessagesMicroservice.NexmoSmsApi
 {
-    public static class SendSms
+    public static class SmsSender
     {
         public static Message Execute(string restaurantName, string deliveryTime, string customerPhoneNumber)
         {

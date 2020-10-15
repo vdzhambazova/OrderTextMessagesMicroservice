@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OrderTextMessagesMicroservice.Core;
 using OrderTextMessagesMicroservice.Data;
+using OrderTextMessagesMicroservice.NexmoSmsApi;
 
 namespace OrderTextMessagesMicroservice.Controllers
 {
@@ -38,7 +39,7 @@ namespace OrderTextMessagesMicroservice.Controllers
         {
             if (ModelState.IsValid)
             {
-                var message = SendSms.Execute(order.RestaurantName, order.DeliveryTime, order.CustomerPhoneNumber);
+                var message = SmsSender.Execute(order.RestaurantName, order.DeliveryTime, order.CustomerPhoneNumber);
                 this.context.Messages.Add(message);
                 await this.context.SaveChangesAsync();
 
