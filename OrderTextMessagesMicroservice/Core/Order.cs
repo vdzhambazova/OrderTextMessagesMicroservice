@@ -10,7 +10,7 @@ namespace OrderTextMessagesMicroservice.Core
         [Required, StringLength(10)]
         public string DeliveryTime { get; set; }
 
-        [Required, StringLength(10)]
+        [Required, StringLength(15)]
         public string CustomerPhoneNumber { get; set; } 
     }
 }
