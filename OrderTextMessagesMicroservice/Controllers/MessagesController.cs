@@ -28,9 +28,9 @@ namespace OrderTextMessagesMicroservice.Controllers
 
         // GET: api/Messages
         [HttpGet]
-        public  ActionResult<IEnumerable<Message>> GetLast50Messages()
+        public async Task<ActionResult<IEnumerable<Message>>> GetLast50Messages()
         {
-            var result = this.context.Messages.ToList();
+            var result = await this.context.Messages.ToListAsync();
             return Ok(result.Skip(Math.Max(0, result.Count() - 50)));
         }
 
@@ -38,10 +38,15 @@ namespace OrderTextMessagesMicroservice.Controllers
         [HttpPost]
         public async Task<ActionResult<Message>> Post(Message message)
         {
-            this.context.Messages.Add(message);
-            await this.context.SaveChangesAsync();
+            if (ModelState.IsValid)
+            {
+                this.context.Messages.Add(message);
+                await this.context.SaveChangesAsync();
 
-            return CreatedAtAction("GetOrder", new { id = message.Id }, message);
+                return CreatedAtAction(nameof(Get), message);
+            }
+
+            return BadRequest();
         }
     }
 }
