@@ -1,6 +1,4 @@
-using System.ComponentModel.DataAnnotations;
-
-namespace OrderTextMessagesMicroservice
+namespace OrderTextMessagesMicroservice.Core
 {
     public class Restaurant
     {
