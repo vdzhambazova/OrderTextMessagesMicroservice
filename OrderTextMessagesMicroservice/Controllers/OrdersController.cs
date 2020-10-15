@@ -4,47 +4,46 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using OrderTextMessagesMicroservice.Core;
 using OrderTextMessagesMicroservice.Data;
 
 namespace OrderTextMessagesMicroservice.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MessagesController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         private readonly OrderTextMessagesDbContext context;
 
-        public MessagesController(OrderTextMessagesDbContext context)
+        public OrdersController(OrderTextMessagesDbContext context)
         {
             this.context = context;
         }
 
-        // GET: /messages
+        // GET: /orders
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Message>>> Get()
-        {
-            return await this.context.Messages.ToListAsync();
-        }
-
-        // GET: /messages
-        [HttpGet]
-        [Route("log")]
         public async Task<ActionResult<IEnumerable<Message>>> GetLog()
         {
             var result = await this.context.Messages.ToListAsync();
-            return this.Ok(result.Skip(Math.Max(0, result.Count() - 50)));
+            var errors = result.Where(x => x.StatusCode != "0");
+            var messages = result.Skip(Math.Max(0, result.Count() - 50));
+
+            var logMessages = new Logs(errors, messages);
+            return this.Ok(logMessages);
         }
 
-        // POST: /messages
+        // POST: /orders
         [HttpPost]
-        public async Task<ActionResult<Message>> Post(Message message)
+        public async Task<ActionResult<Message>> Post(Order order)
         {
             if (ModelState.IsValid)
             {
+                var message = SendSms.Execute(order.RestaurantName, order.DeliveryTime, order.CustomerPhoneNumber);
                 this.context.Messages.Add(message);
                 await this.context.SaveChangesAsync();
 
-                return this.CreatedAtAction(nameof(Get), message);
+                return this.CreatedAtAction(nameof(GetLog), message);
+
             }
 
             return this.BadRequest();
