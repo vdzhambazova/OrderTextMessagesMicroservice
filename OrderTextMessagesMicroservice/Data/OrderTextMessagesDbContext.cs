@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using OrderTextMessagesMicroservice.Core;
 
 namespace OrderTextMessagesMicroservice.Data
 {
@@ -6,9 +7,7 @@ namespace OrderTextMessagesMicroservice.Data
     {
         public OrderTextMessagesDbContext(DbContextOptions<OrderTextMessagesDbContext> options)
             : base(options)
-        {
-
-        }
+        { }
 
         public DbSet<Message> Messages { get; set; }
     }

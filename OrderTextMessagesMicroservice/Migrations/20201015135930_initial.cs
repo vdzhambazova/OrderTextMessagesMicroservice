@@ -11,9 +11,9 @@ namespace OrderTextMessagesMicroservice.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    RestaurantName = table.Column<string>(maxLength: 30, nullable: false),
-                    DeliveryTime = table.Column<string>(maxLength: 10, nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    TextMessage = table.Column<string>(maxLength: 200, nullable: false),
+                    StatusCode = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
