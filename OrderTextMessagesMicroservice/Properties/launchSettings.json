@@ -29,9 +29,13 @@
       "commandName": "Docker",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/restaurants",
+      "environmentVariables": {
+        "NEXMO_API_KEY": "6bf83b85",
+        "NEXMO_API_SECRET": "jUUyT2FpqIrkHtjB"
+      },
       "publishAllPorts": true,
-      "useSSL": false,
-      "httpPort": 8080
+      "httpPort": 8080,
+      "useSSL": false
     }
   }
 }
