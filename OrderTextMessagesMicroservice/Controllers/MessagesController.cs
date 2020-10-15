@@ -28,10 +28,11 @@ namespace OrderTextMessagesMicroservice.Controllers
 
         // GET: /messages
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Message>>> GetLast50Messages()
+        [Route("log")]
+        public async Task<ActionResult<IEnumerable<Message>>> GetLog()
         {
             var result = await this.context.Messages.ToListAsync();
-            return Ok(result.Skip(Math.Max(0, result.Count() - 50)));
+            return this.Ok(result.Skip(Math.Max(0, result.Count() - 50)));
         }
 
         // POST: /messages
@@ -43,10 +44,10 @@ namespace OrderTextMessagesMicroservice.Controllers
                 this.context.Messages.Add(message);
                 await this.context.SaveChangesAsync();
 
-                return CreatedAtAction(nameof(Get), message);
+                return this.CreatedAtAction(nameof(Get), message);
             }
 
-            return BadRequest();
+            return this.BadRequest();
         }
     }
 }

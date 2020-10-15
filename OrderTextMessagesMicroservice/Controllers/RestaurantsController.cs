@@ -22,7 +22,7 @@ namespace OrderTextMessagesMicroservice.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<Restaurant>> Get()
         {
-            return Ok(Restaurants);
+            return this.Ok(Restaurants);
         }
     }
 }
