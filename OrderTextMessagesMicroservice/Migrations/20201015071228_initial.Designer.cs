@@ -9,8 +9,8 @@ using OrderTextMessagesMicroservice.Data;
 namespace OrderTextMessagesMicroservice.Migrations
 {
     [DbContext(typeof(OrderTextMessagesDbContext))]
-    [Migration("20201014160242_changeEntityName")]
-    partial class changeEntityName
+    [Migration("20201015071228_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,10 +28,14 @@ namespace OrderTextMessagesMicroservice.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DeliveryTime")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
 
                     b.Property<string>("RestaurantName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 
