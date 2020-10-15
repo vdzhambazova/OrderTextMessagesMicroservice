@@ -19,14 +19,14 @@ namespace OrderTextMessagesMicroservice.Controllers
             this.context = context;
         }
 
-        // GET: api/Messages
+        // GET: /messages
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> Get()
         {
             return await this.context.Messages.ToListAsync();
         }
 
-        // GET: api/Messages
+        // GET: /messages
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Message>>> GetLast50Messages()
         {
@@ -34,7 +34,7 @@ namespace OrderTextMessagesMicroservice.Controllers
             return Ok(result.Skip(Math.Max(0, result.Count() - 50)));
         }
 
-        // POST: api/Messages
+        // POST: /messages
         [HttpPost]
         public async Task<ActionResult<Message>> Post(Message message)
         {

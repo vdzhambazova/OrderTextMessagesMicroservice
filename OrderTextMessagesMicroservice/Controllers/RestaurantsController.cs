@@ -18,7 +18,7 @@ namespace OrderTextMessagesMicroservice.Controllers
         };
 
 
-        // GET: api/<RestaurantsController>
+        // GET: /restaurants
         [HttpGet]
         public ActionResult<IEnumerable<Restaurant>> Get()
         {
