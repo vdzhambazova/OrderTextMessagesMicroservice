@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using OrderTextMessagesMicroservice.Core;
 using System.Collections.Generic;
 
@@ -6,6 +7,7 @@ namespace OrderTextMessagesMicroservice.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [EnableCors]
     public class RestaurantsController : ControllerBase
     {
         private static readonly Restaurant[] Restaurants = new[]
@@ -21,6 +23,7 @@ namespace OrderTextMessagesMicroservice.Controllers
 
         // GET: /restaurants
         [HttpGet]
+        [EnableCors("Client")]
         public ActionResult<IEnumerable<Restaurant>> Get()
         {
             return this.Ok(Restaurants);
