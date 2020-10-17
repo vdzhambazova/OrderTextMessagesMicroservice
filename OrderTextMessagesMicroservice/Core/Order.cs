@@ -4,6 +4,13 @@ namespace OrderTextMessagesMicroservice.Core
 {
     public class Order
     {
+        public Order(string restaurantName, string deliveryTime, string customerPhoneNumber)
+        {
+            this.RestaurantName = restaurantName;
+            this.DeliveryTime = deliveryTime;
+            this.CustomerPhoneNumber = customerPhoneNumber;
+        }
+
         [Required, StringLength(30)]
         public string RestaurantName { get; set; }
 
@@ -11,6 +18,6 @@ namespace OrderTextMessagesMicroservice.Core
         public string DeliveryTime { get; set; }
 
         [Required, StringLength(15)]
-        public string CustomerPhoneNumber { get; set; } 
+        public string CustomerPhoneNumber { get; set; }
     }
 }
